@@ -1,14 +1,15 @@
 import  { useRef } from 'react'
-import { useDispatch } from 'react-redux';
 import  {TaskItemProps}      from './TaskItem';
 import  useLocalStorage  from '../hooks/useLocalStorage';
 import { Box, Button, FormControl, FormGroup, FormHelperText, Input, TextField } from '@mui/material'
+import { useAppDispatch } from '';
 
 
 export const Form = () => {
+  const dispatch = useAppDispatch();
+  
     const nameRef = useRef<HTMLInputElement>(null);
     const descriptionRef = useRef<HTMLTextAreaElement>(null);
-    const dispatch = useDispatch();
     const [filter, setFilter] = useLocalStorage({ key: "filter", defaultValue: () => 'all' });
 
   const add = () => {
@@ -30,7 +31,7 @@ export const Form = () => {
         progress: isAllOrProgress
       }
 
-
+  
 
       console.log(newTask)
     }

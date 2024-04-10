@@ -10,7 +10,7 @@ export interface TaskState {
 const initialState: TaskState = localStorage.getItem("tasks") ? JSON.parse(localStorage.getItem("tasks")!) : { tasks: [] };
 
 
-const tasksSlice = createSlice({
+const reducerTask = createSlice({
     name: "tasks",
     initialState,
     reducers: {
@@ -28,4 +28,8 @@ const tasksSlice = createSlice({
         }
     }
 })
+
+
+export const { addTask } = reducerTask.actions;
+export const reducer = reducerTask.reducer;
 
