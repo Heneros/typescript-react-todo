@@ -2,45 +2,48 @@ import  { useRef } from 'react'
 import  {TaskItemProps}      from './TaskItem';
 import  useLocalStorage  from '../hooks/useLocalStorage';
 import { Box, Button, FormControl, FormGroup, FormHelperText, Input, TextField } from '@mui/material'
-import { useAppDispatch } from '';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { addTask, TaskState } from '../redux/slices/TodoSlice';
+import { useDispatch } from 'react-redux';
 
 
 export const Form = () => {
-  const dispatch = useAppDispatch();
-  
+  const dispatch = useDispatch();
+
     const nameRef = useRef<HTMLInputElement>(null);
     const descriptionRef = useRef<HTMLTextAreaElement>(null);
-    const [filter, setFilter] = useLocalStorage({ key: "filter", defaultValue: () => 'all' });
+    // const [filter, setFilter] = useLocalStorage('all');
 
-  const add = () => {
-    if (nameRef.current && descriptionRef.current) {
-      if (nameRef.current.value === '' || descriptionRef.current.value === '') {
-        alert('Empty fields')
+  const add = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!nameRef.current || !descriptionRef.current || nameRef.current.value === '' || descriptionRef.current.value === '') {
+      alert('Empty fields');
+      return;
+  } else {
+      const newTask: TaskItemProps = {
+          id: Date.now().toString(),
+          name: nameRef.current.value,
+          description: descriptionRef.current.value,
+          completed: false,
+          all: true,
+          progress: true
       }
-    } else {
-      const filterValue = filter()
-      const isAllOrCompleted = filterValue === 'all' || filterValue === 'completed';
-      const isAllOrProgress = filterValue === 'all' || filterValue === 'progress';
-
-      const newTask: TaskItemProps   = {
-        id: Date.now().toString(), 
-        name: nameRef.current?.value || '', 
-        description: descriptionRef.current?.value || '',
-        completed: false,
-        all: isAllOrCompleted,
-        progress: isAllOrProgress
-      }
-
-  
-
-      console.log(newTask)
-    }
+      dispatch(addTask(newTask));
+      console.log(newTask);
+  }
    }
+  
+//    function handleSubmit(e) {
+//     e.preventDefault();
+//     add();
+// }
+
   
   return (
     <Box sx={{ mt: 15 }} style={{ marginBottom: "45px" }}>
       <FormControl>
-        <form>
+        <form onSubmit={add}>
         <FormControl fullWidth >
                         <TextField type="text" fullWidth style={{ width: '100%' }} inputRef={nameRef} placeholder="Name of task" />
                         <TextField type="text" fullWidth style={{ width: '100%' }} inputRef={descriptionRef} placeholder="Description" />

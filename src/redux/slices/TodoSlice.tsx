@@ -7,7 +7,11 @@ export interface TaskState {
     tasks: TaskItemProps[]
 }
 
-const initialState: TaskState = localStorage.getItem("tasks") ? JSON.parse(localStorage.getItem("tasks")!) : { tasks: [] };
+
+
+const storedTasks = localStorage.getItem("tasks");
+const initialState: TaskState = storedTasks ? JSON.parse(storedTasks) : { tasks: [] };
+
 
 
 const reducerTask = createSlice({
@@ -15,17 +19,9 @@ const reducerTask = createSlice({
     initialState,
     reducers: {
         addTask: (state, action: PayloadAction<TaskItemProps>) => {
-            const item = action.payload;
-            if (!state.tasks) {
-                state.tasks = [];
-            }
-            const existItem = state.tasks.find((x) => x.id === item.id)
-
-            if (!existItem) {
-                state.tasks = [...state.tasks, item]
-            }
+            state.tasks.push(action.payload);
             return updateTask(state);
-        }
+          },
     }
 })
 

@@ -9,14 +9,14 @@ import { Homepage } from './pages/Homepage';
 const router = createBrowserRouter([
   {
   path: '/',
-  element: <Layout />
-  },
+  element: <Layout />,
+  children: [
   {
     path: '',
     element: <Homepage />
-    
     },
-
+  ]
+},
 ])
 
 const root = ReactDOM.createRoot(
