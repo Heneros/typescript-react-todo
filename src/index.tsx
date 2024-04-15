@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './pages/Layout';
 import store from './redux/store';
 import { Homepage } from './pages/Homepage';
+import { SinglePost } from './pages/SinglePost';
 // import store from './redux/store'
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
     path: '',
     element: <Homepage />
     },
+    {
+      path: 'tasks/:id',
+      element: <SinglePost />
+      },
   ]
 },
 ])

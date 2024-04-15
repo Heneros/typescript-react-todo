@@ -4,7 +4,8 @@ import { reducer as reducerTask } from './slices/TodoSlice';
 
 const store = configureStore({
     reducer: {
-     reducer: reducerTask
+        tasks: reducerTask
+        // reducer: reducerTask
     }
 })
  

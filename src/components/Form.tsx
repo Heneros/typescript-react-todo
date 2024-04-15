@@ -31,6 +31,9 @@ export const Form = () => {
       }
       dispatch(addTask(newTask));
       console.log(newTask);
+
+      nameRef.current.value="";
+      descriptionRef.current.value="";
   }
    }
   
@@ -45,8 +48,8 @@ export const Form = () => {
       <FormControl>
         <form onSubmit={add}>
         <FormControl fullWidth >
-                        <TextField type="text" fullWidth style={{ width: '100%' }} inputRef={nameRef} placeholder="Name of task" />
-                        <TextField type="text" fullWidth style={{ width: '100%' }} inputRef={descriptionRef} placeholder="Description" />
+                        <TextField type="text" fullWidth style={{ width: '100%' }}inputRef={nameRef} placeholder="Name of task" />
+                        <TextField type="text" fullWidth style={{ width: '100%' }}  inputRef={descriptionRef} placeholder="Description" />
                         <Button type="submit" fullWidth variant="outlined" >
                             Add Task
                         </Button>
