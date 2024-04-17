@@ -57,3 +57,18 @@ body {
     align-items: center;
     flex-direction: column;
 }
+.buttons{
+  display: flex;
+  justify-content: center;
+
+}
+@media (min-width: 991px) {
+  .task-items{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+  }
+  .task-items > div{
+   flex: 1;
+  }
+}
+

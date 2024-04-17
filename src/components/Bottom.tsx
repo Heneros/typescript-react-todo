@@ -29,7 +29,7 @@ export const Bottom = () => {
   })
 
   
-    console.log(tasks);
+    // console.log(tasks);
     return (
       <>
             <TextField
@@ -40,7 +40,7 @@ export const Bottom = () => {
                     value={searchText}
                     onChange={(e) => setSearchText(e.target.value)}
         />
-           <div className="buttons">
+           <div className="buttons" >
                     <Button sx={{ m: 1 }} variant="contained" onClick={() => setFilter('all')}>All</Button>
                     <Button sx={{ m: 1 }}
                         variant="contained"
@@ -55,7 +55,8 @@ export const Bottom = () => {
                         onClick={() => setFilter('progress')}
                         startIcon={<HourglassBottomIcon />}
                     >Progress</Button>
-                </div>
+        </div>
+        <div className='task-items'>
         {tasks && tasks.length ? ( filteredTasks.map((task: TaskItemProps) => (
           <TaskItem
             id={task.id}
@@ -67,6 +68,8 @@ export const Bottom = () => {
           />
         )) 
       ): (<>No tasks added.</>)}
+        </div>
+
         </>
   )
 }

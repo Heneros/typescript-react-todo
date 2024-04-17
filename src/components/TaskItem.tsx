@@ -52,16 +52,12 @@ const TaskItem: React.FC<TaskItemProps> = ({ id, name, description, completed, a
             md: "row"
         }
     }}>
-        <Link to={`/edit/${id}`} >
-            <Button variant="contained" startIcon={<EditIcon />} >
-                Edit
-            </Button>
-        </Link>
+
         <Link to={`/tasks/${id}`}>
             <Button variant="contained"
                 startIcon={<InfoIcon />}
             >
-                Details
+                Edit
             </Button>
         </Link>
     </Box>

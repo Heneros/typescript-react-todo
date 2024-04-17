@@ -6,6 +6,7 @@ import Layout from './pages/Layout';
 import store from './redux/store';
 import { Homepage } from './pages/Homepage';
 import { SinglePost } from './pages/SinglePost';
+import './App.css';
 // import store from './redux/store'
 const router = createBrowserRouter([
   {

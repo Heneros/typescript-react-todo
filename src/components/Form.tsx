@@ -1,8 +1,6 @@
 import  { useRef } from 'react'
 import  {TaskItemProps}      from './TaskItem';
-import  useLocalStorage  from '../hooks/useLocalStorage';
 import { Box, Button, FormControl, FormGroup, FormHelperText, Input, TextField } from '@mui/material'
-import { useAppDispatch, useAppSelector } from '../hooks';
 import { addTask, TaskState } from '../redux/slices/TodoSlice';
 import { useDispatch } from 'react-redux';
 
@@ -12,7 +10,6 @@ export const Form = () => {
 
     const nameRef = useRef<HTMLInputElement>(null);
     const descriptionRef = useRef<HTMLTextAreaElement>(null);
-    // const [filter, setFilter] = useLocalStorage('all');
 
   const add = (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,19 +27,12 @@ export const Form = () => {
           progress: true
       }
       dispatch(addTask(newTask));
-      console.log(newTask);
-
+      // console.log(newTask);
       nameRef.current.value="";
       descriptionRef.current.value="";
   }
    }
-  
-//    function handleSubmit(e) {
-//     e.preventDefault();
-//     add();
-// }
 
-  
   return (
     <Box sx={{ mt: 15 }} style={{ marginBottom: "45px" }}>
       <FormControl>
